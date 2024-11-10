@@ -1,0 +1,16 @@
+venv
+.venv
+env
+.env
+
+uploads
+
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+data/
+cert/
+
+azure/build/**

@@ -1,0 +1,24 @@
+{% extends "base.jinja.html" %}
+
+{% block content %}
+  <main>
+    <h1>{{ page_title }}</h1>
+    <p>{{ page_description }}</p>
+   
+
+    <div class="card">
+      <div class="install">
+        <a href="{{install_url}}">Install Profile</a>
+      </div>
+    </div>
+
+    {% if logo_url %}
+      <div class="logo">
+          <img src="{{logo_url}}" alt="logo" />
+      </div>
+    {% endif %}
+  </main>
+  <footer>
+   
+  </footer>
+{% endblock %}

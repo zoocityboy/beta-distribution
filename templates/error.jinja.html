@@ -1,0 +1,12 @@
+{% extends "base.jinja.html" %}
+
+{% block content %}
+    <main>
+        {% if logo_url %}
+        <div class="logo">
+            <img src="{{logo_url}}" alt="logo" />
+        </div>
+        {% endif %}
+        <h1>{{ error_message }}</h1>
+    </main>
+{% endblock %}
