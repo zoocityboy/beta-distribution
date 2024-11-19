@@ -45,6 +45,7 @@ router = APIRouter(
 
 def _upload_app(
     app_file: UploadFile,
+    app_changelog: UploadFile,
 ) -> BuildInfo:
     platform: Platform
 
@@ -62,7 +63,9 @@ def _upload_app(
 
     app_file_content = app_file.file.read()
 
-    build_info = get_build_info(platform, app_file_content)
+    app_changelog_content = app_changelog.file.read()
+
+    build_info = get_build_info(platform, app_file_content,app_changelog_content)
     upload_id = build_info.upload_id
 
     logger.debug(f"Starting upload of {upload_id!r}")
@@ -91,8 +94,9 @@ _upload_route_kwargs = {
 @router.post("/upload", **_upload_route_kwargs)
 def _plaintext_post_upload(
     app_file: UploadFile = File(description="An `.ipa` or `.apk` build"),
+    app_changelog: UploadFile = File(description="A `changelog.md` file"),
 ) -> PlainTextResponse:
-    build_info = _upload_app(app_file)
+    build_info = _upload_app(app_file, app_changelog)
 
     return PlainTextResponse(
         content=get_absolute_url(f"/get/{build_info.upload_id}"),
@@ -102,8 +106,9 @@ def _plaintext_post_upload(
 @router.post("/api/upload", **_upload_route_kwargs)
 def _json_api_post_upload(
     app_file: UploadFile = File(description="An `.ipa` or `.apk` build"),
+    app_changelog: UploadFile = File(description="A `changelog.md` file"),
 ) -> BuildInfo:
-    return _upload_app(app_file)
+    return _upload_app(app_file,app_changelog)
 
 
 async def _api_delete_app_upload(

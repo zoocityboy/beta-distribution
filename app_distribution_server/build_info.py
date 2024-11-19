@@ -55,6 +55,7 @@ class LegacyAppInfo(BaseModel):
     app_title: str
     bundle_id: str
     bundle_version: str
+    changelog: str | None = None
 
     @field_validator("bundle_id")
     def validate_bundle_id(cls, v):
@@ -70,6 +71,7 @@ class BuildInfo(LegacyAppInfo):
     file_size: int
     created_at: datetime | None
     platform: Platform
+    changelog_content: str | None = None
 
     @property
     def human_file_size(self) -> str:
@@ -92,11 +94,13 @@ class BuildInfo(LegacyAppInfo):
 def get_build_info_from_ipa(
     upload_id: str,
     ipa_file: BytesIO,
+    changelog_file: BytesIO,
 ) -> BuildInfo:
     with zipfile.ZipFile(ipa_file, "r") as ipa:
         for file in ipa.namelist():
             if file.endswith(".app/Info.plist"):
                 plist_file_content = ipa.read(file)
+                changelog_content = changelog_file.read(changelog_file)
 
                 info = plistlib.loads(plist_file_content)
                 bundle_id = info.get("CFBundleIdentifier")
@@ -115,6 +119,7 @@ def get_build_info_from_ipa(
                     bundle_version=bundle_version,
                     created_at=datetime.now(timezone.utc),
                     file_size=ipa_file.getbuffer().nbytes,
+                    changelog_content=changelog_content,
                 )
 
     logger.error("Could not find plist file in bundle")
@@ -124,12 +129,14 @@ def get_build_info_from_ipa(
 def get_build_info_from_apk(
     upload_id: str,
     apk_file: BytesIO,
+    changelog_file: BytesIO,
 ) -> BuildInfo:
     tempdir = tempfile.mkdtemp()
     file_name = "app.apk"
     file_path = os.path.join(tempdir, file_name)
 
     try:
+        changelog_content = changelog_file.read()
         with open(file_path, "wb") as f:
             f.write(apk_file.read())
 
@@ -145,6 +152,7 @@ def get_build_info_from_apk(
             bundle_version=version_name,
             created_at=datetime.now(timezone.utc),
             file_size=apk_file.getbuffer().nbytes,
+            changelog_content=changelog_content,
         )
     finally:
         shutil.rmtree(tempdir)
@@ -153,20 +161,27 @@ def get_build_info_from_apk(
 def get_build_info(
     platform: Platform,
     app_file_content: bytes,
+    app_changelog_content: bytes,
 ):
     upload_id = str(uuid4())
 
     logger.debug(f"Obtaining build info from {upload_id!r}")
+    logger.debug(f"Platform: {platform.platform_name}")
+    logger.debug(f"App file size: {len(app_file_content)} bytes")
+    logger.debug(f"Changelog file size: {len(app_changelog_content)} bytes")
 
     file_contents_stream = io.BytesIO(app_file_content)
+    changelog_contents_stream = io.BytesIO(app_changelog_content)
 
     if platform == Platform.ios:
         return get_build_info_from_ipa(
             upload_id,
             file_contents_stream,
+            changelog_contents_stream,
         )
 
     return get_build_info_from_apk(
         upload_id,
         file_contents_stream,
+        changelog_contents_stream,
     )

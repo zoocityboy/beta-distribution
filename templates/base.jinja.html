@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page_title }}</title>
     <style>
+      :root {
+        --background-color: #282c34;
+        --text-color: #abb2bf;
+        --primary-color: #61afef;
+        --secondary-color: #c678dd;
+        --accent-color: #98c379;
+        --border-color: #3e4451;
+      }
       * {
         box-sizing: border-box;
       }
 
       body {
-        background-color: #001120;
-        color: #e0e0e0;
+        background-color:  var(--background-color);
+        color:  var(--text-color);
         font-family: system-ui, sans-serif;
 
         margin: 0;
@@ -19,8 +27,8 @@
       }
 
       main {
-        height: 100dvh;
-        color: #e1e1e1;
+        /* height: 100dvh; */
+        color: var(--text-color);
 
         display: flex;
         flex-direction: column;
@@ -28,7 +36,34 @@
         justify-content: center;
       }
 
-      .card {
+
+      button {
+        background-color: var(--secondary-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+      }
+
+      input, textarea {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+      }
+
+      header, footer {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .navbar {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        border-bottom: 1px solid var(--border-color);
+      }
+
+
+      /* .card {
         display: flex;
         flex-direction: column;
 
@@ -42,13 +77,42 @@
           0 1px 2px rgba(255, 255, 255, 0.05),
           0 2px 4px rgba(255, 255, 255, 0.04),
           0 8px 16px rgba(255, 255, 255, 0.03);
+      } */
+      
+      .card {
+        background-color: var(--text-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        padding: 16px;
+        border-radius: 12px;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        box-shadow:
+          0 1px 2px rgba(255, 255, 255, 0.05),
+          0 2px 4px rgba(255, 255, 255, 0.04),
+          0 8px 16px rgba(255, 255, 255, 0.03);
+      }
+
+      .card-header {
+        background-color: var(--text-color);
+        color: var(--text-color);
+      }
+
+      .card-body {
+        background-color: var(--text-color);
+        color: var(--text-color);
+      }
+
+      .card-footer {
+        background-color: var(--text-color);
+        color: var(--text-color);
       }
 
       h1 {
         font-weight: normal;
         font-size: 1.2rem; 
         margin: 0.4rem 0;
-        color: #00d264;
       }
 
       pre, time {
@@ -71,7 +135,7 @@
         text-decoration: none;
 
         background-color: black;
-        color: white;
+        color: var(--text-color);
         padding: 12px 16px;
         border-radius: 8px;
         line-height: 1;
@@ -97,13 +161,6 @@
         padding: 0.8rem;
       }
 
-      footer a, footer a:visited {
-        color: #00d264;
-      }
-
-      footer a:hover {
-        opacity: 0.8;
-      }
     </style>
 
     <script>

@@ -84,6 +84,7 @@ async def render_get_item_installation_page(
             "install_url": install_url,
             "qr_code_svg": get_qr_code_svg(install_url),
             "logo_url": LOGO_URL,
+            "changelog": build_info.changelog_content,
         },
     )
 @router.get(

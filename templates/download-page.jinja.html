@@ -3,30 +3,43 @@
 {% block content %}
   <main>
     <h1>{{ build_info.app_title }}</h1>
-    <pre>{{ build_info.platform.display_name }}</pre>
-    <pre>{{ build_info.bundle_version }}</pre>
-    <pre>{{ build_info.human_file_size }}</pre>
+    <pre>{{ build_info.bundle_id }}</pre>
+    <hr>
+    <pre>{{ build_info.platform.display_name }} ~ {{ build_info.bundle_version }} ~ {{ build_info.human_file_size }}</pre>
+    
     {% if build_info.created_at %}
       <time datetime="{{ build_info.created_at }}">{{ build_info.created_at }}</time>
     {% endif %}
-
+    <hr>
     <div class="card">
-      <div class="qr">
-        {{qr_code_svg|safe}}
+      
+      <div class="card-body">
+        <div class="qr">
+          {{qr_code_svg|safe}}
+        </div>
       </div>
-
-      <div class="install">
-        <a href="{{install_url}}">Install</a>
+      <div class="card-footer">
+        <div class="install">
+          <a href="{{install_url}}">Install</a>
+        </div>
       </div>
+      
     </div>
+    {% if build_info.changelog_content %}
+      <h2>Changelog</h2>
+      <pre>{{ build_info.changelog_content }}</pre>
+    {% endif %}
+    
 
+    
+  </main>
+  <footer>
     {% if logo_url %}
       <div class="logo">
+          <p>BetaBox</p>
           <img src="{{logo_url}}" alt="logo" />
       </div>
     {% endif %}
-  </main>
-  <footer>
    
   </footer>
 {% endblock %}
