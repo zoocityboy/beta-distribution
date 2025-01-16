@@ -1,5 +1,7 @@
 venv
 .venv
+.pyenv/
+pyenv/
 env
 .env
 

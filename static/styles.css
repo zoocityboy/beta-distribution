@@ -1,0 +1,304 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+  
+  body {
+    /* 3. Add accessible line-height */
+    line-height: 1.5;
+    /* 4. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 4rem; /* Add padding for footer */
+  }
+  
+  /* 5. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 6. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 7. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+:root[data-theme='light'] {
+    --background: #f2f2f2;
+    --foreground: #121212;
+    --card-bg: #ffffff;
+    --highlight-color: #0056b3;
+    --button-bg: #007bff;
+    --button-color: #ffffff;
+    --button-hover-bg: #0056b3;
+    --link-color: #007bff;
+    --footer-color: #6c757d;
+    --svg-filter: invert(0%);
+}
+
+:root[data-theme='dark'] {
+    --background: #121212;
+    --foreground: #ffffff;
+    --card-bg: #1e1e1e;
+    --highlight-color: #bb86fc;
+    --button-bg: #bb86fc;
+    --button-color: #121212;
+    --button-hover-bg: #3700b3;
+    --link-color: #bb86fc;
+    --footer-color: #bbbbbb;
+    --svg-filter: invert(100%);
+}
+
+body {
+    font-family: Helvetica, 'Segoe UI',Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh;
+    text-align: center;
+    padding-bottom: 4rem; /* Add padding for footer */
+}
+
+.container {
+    max-width: 400px;
+    min-width: 380px;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.theme-switcher {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+}
+
+.theme-switcher button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--foreground);
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.theme-switcher button:hover {
+    background-color: var(--card-bg);
+}
+
+[data-theme='light'] .moon-icon {
+    display: block;
+}
+
+[data-theme='light'] .sun-icon {
+    display: none;
+}
+
+[data-theme='dark'] .moon-icon {
+    display: none;
+}
+
+[data-theme='dark'] .sun-icon {
+    display: block;
+}
+
+section.content {
+    padding: 2rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.content main {
+    min-height: 100vh; /* Account for footer and padding */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    color: var(--footer-color);
+
+}
+
+.highlight {
+    font-weight: bold;
+    color: var(--highlight-color);
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-collapse: true;
+    direction: ltr;
+    text-align: center;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.qr {
+    filter: var(--svg-filter);
+    margin: 1rem 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.qr svg {
+    width: 180px;
+    height: 180px;
+}
+
+.logo {
+    width: 40px;
+    height: auto;
+    margin-bottom: 15px;
+    filter: var(--svg-filter);
+}
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--footer-color);
+    margin: 2rem 0;
+    opacity: 0.2;
+}
+.version {
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+.filesize{
+    font-weight: normal;
+    font-size: 1rem;
+    color: var(--footer-color);
+}
+.bundle{
+    font-size: 0.8rem;
+    margin: 0 0;
+    color: var(--footer-color);
+}
+
+.install-btn {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    padding: 0.5rem 1rem;
+    margin: 0rem 0rem 1rem 0rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.install-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+.whats-new-link {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+}
+.whats-new-link:hover {
+    text-decoration: underline;
+}
+.whats-new{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 0;
+    max-width: 400px;
+    min-width: 380px;
+    margin-bottom: 4rem; /* Add bottom margin to last content section */
+}
+.whats-new h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    text-align: left;
+    direction: ltr;
+}
+
+.whats-new h3 {
+    margin-bottom: 0.5rem;
+    font-size: .9rem;
+}
+
+.whats-new ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.whats-new li {
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: .8rem;
+}
+
+
+footer {
+    font-size: 0.8rem;
+    background-color: var(--background);
+    position: fixed;
+    bottom: 0rem;
+    right: 1rem;
+    left: 1rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+footer div{
+    padding: 0 1rem;
+    color: var(--footer-color);
+}
+footer div.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+}

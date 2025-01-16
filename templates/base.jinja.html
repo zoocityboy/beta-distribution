@@ -4,164 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page_title }}</title>
-    <style>
-      :root {
-        --background-color: #282c34;
-        --text-color: #abb2bf;
-        --primary-color: #61afef;
-        --secondary-color: #c678dd;
-        --accent-color: #98c379;
-        --border-color: #3e4451;
-      }
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        background-color:  var(--background-color);
-        color:  var(--text-color);
-        font-family: system-ui, sans-serif;
-
-        margin: 0;
-        padding: 0;
-      }
-
-      main {
-        /* height: 100dvh; */
-        color: var(--text-color);
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-
-      button {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-      }
-
-      input, textarea {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-      }
-
-      header, footer {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        border-top: 1px solid var(--border-color);
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .navbar {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        border-bottom: 1px solid var(--border-color);
-      }
-
-
-      /* .card {
-        display: flex;
-        flex-direction: column;
-
-        background-color: #e1e1e1;
-        color: #e0e0e0;
-        padding: 16px;
-        border-radius: 12px;
-        margin-top: 1rem;
-
-        box-shadow:
-          0 1px 2px rgba(255, 255, 255, 0.05),
-          0 2px 4px rgba(255, 255, 255, 0.04),
-          0 8px 16px rgba(255, 255, 255, 0.03);
-      } */
-      
-      .card {
-        background-color: var(--text-color);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-        padding: 16px;
-        border-radius: 12px;
-        margin-top: 1rem;
-        display: flex;
-        flex-direction: column;
-        box-shadow:
-          0 1px 2px rgba(255, 255, 255, 0.05),
-          0 2px 4px rgba(255, 255, 255, 0.04),
-          0 8px 16px rgba(255, 255, 255, 0.03);
-      }
-
-      .card-header {
-        background-color: var(--text-color);
-        color: var(--text-color);
-      }
-
-      .card-body {
-        background-color: var(--text-color);
-        color: var(--text-color);
-      }
-
-      .card-footer {
-        background-color: var(--text-color);
-        color: var(--text-color);
-      }
-
-      h1 {
-        font-weight: normal;
-        font-size: 1.2rem; 
-        margin: 0.4rem 0;
-      }
-
-      pre, time {
-        display: block;
-        font-family: monospace;
-        margin: 0.2rem 0;
-      }
-
-      .install {
-        margin-top: 16px;
-      }
-
-      .install > a {
-        box-sizing: border-box;
-
-        display: inline-flex;
-        justify-content: center;
-
-        color: inherit;
-        text-decoration: none;
-
-        background-color: black;
-        color: var(--text-color);
-        padding: 12px 16px;
-        border-radius: 8px;
-        line-height: 1;
-
-        width: 100%;
-      }
-
-      .logo {
-        margin-top: 16px;
-      }
-      .logo img {
-        width: 128px;
-        /* height: 32px; */
-      }
-
-      footer {
-        font-size: 0.8rem;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding: 10px 0;
-        text-align: center;
-        padding: 0.8rem;
-      }
-
-    </style>
+    <link rel="stylesheet" href="/static/styles.css">
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -176,7 +19,62 @@
   </head>
 
   <body>
-    {% block content %}
-    {% endblock %}
+    <section class="header">
+      <div class="theme-switcher">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </section>
+    <section class="content">
+      {% block content %}
+      {% endblock %}
+    </section>
+
+    <!-- Footer with copyright information -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <p>Beta Distribution</p>
+          <p>&copy; 2025 Embedit</p>
+        </div>
+      </div>
+    </footer>
+    
+    <script>
+      // JavaScript for theme toggling
+      const themeToggle = document.getElementById('theme-toggle');
+      // Get the current theme
+      let isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+      // Toggle theme on click
+      themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      });
+     
+      // Set initial theme based on system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+          themeToggle.checked = true;
+          document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+      }
+    </script>    
   </body>
+
 </html>

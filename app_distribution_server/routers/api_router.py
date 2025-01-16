@@ -60,7 +60,9 @@ def _upload_app(
 
     else:
         raise InvalidFileTypeError()
-
+    
+    logger.debug(f"Platform {platform!r}")
+    
     app_file_content = app_file.file.read()
 
     app_changelog_content = app_changelog.file.read()
@@ -94,10 +96,16 @@ _upload_route_kwargs = {
 @router.post("/upload", **_upload_route_kwargs)
 def _plaintext_post_upload(
     app_file: UploadFile = File(description="An `.ipa` or `.apk` build"),
-    app_changelog: UploadFile = File(description="A `changelog.md` file"),
+    app_changelog: UploadFile | None = File(default=None, description="A `changelog.md` file"),
 ) -> PlainTextResponse:
+    if not app_file:
+        raise InvalidFileTypeError()
+    
+    # Create empty changelog file if none provided
+    if app_changelog is None:
+        app_changelog = UploadFile(filename="changelog.md", file=BytesIO(b""))
+    
     build_info = _upload_app(app_file, app_changelog)
-
     return PlainTextResponse(
         content=get_absolute_url(f"/get/{build_info.upload_id}"),
     )
@@ -106,7 +114,7 @@ def _plaintext_post_upload(
 @router.post("/api/upload", **_upload_route_kwargs)
 def _json_api_post_upload(
     app_file: UploadFile = File(description="An `.ipa` or `.apk` build"),
-    app_changelog: UploadFile = File(description="A `changelog.md` file"),
+    app_changelog: UploadFile | None = File(default=None, description="A `changelog.md` file"),
 ) -> BuildInfo:
     return _upload_app(app_file,app_changelog)
 
@@ -115,7 +123,6 @@ async def _api_delete_app_upload(
     upload_id: str = Path(),
 ) -> PlainTextResponse:
     get_upload_asserted_platform(upload_id)
-
     delete_upload(upload_id)
     logger.info(f"Upload {upload_id!r} deleted successfully")
 

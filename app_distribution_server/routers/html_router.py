@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request, Response, Path
 from fastapi.responses import HTMLResponse,PlainTextResponse
 from fastapi.templating import Jinja2Templates
 from uuid import uuid4
+from markdown import markdown
 from app_distribution_server.build_info import (
     Platform,
 )
@@ -74,6 +75,9 @@ async def render_get_item_installation_page(
         install_url = get_absolute_url(f"/get/{upload_id}/app.apk")
 
     build_info = load_build_info(upload_id)
+    
+    html_content = markdown(build_info.changelog_content, output_format="html")
+    print(f"Changelog content: {html_content}")
 
     return templates.TemplateResponse(
         request=request,
@@ -81,10 +85,11 @@ async def render_get_item_installation_page(
         context={
             "page_title": f"{build_info.app_title} @{build_info.bundle_version} - {APP_TITLE}",
             "build_info": build_info,
+            "platform": platform,
             "install_url": install_url,
             "qr_code_svg": get_qr_code_svg(install_url),
             "logo_url": LOGO_URL,
-            "changelog": build_info.changelog_content,
+            "changelog": html_content,
         },
     )
 @router.get(

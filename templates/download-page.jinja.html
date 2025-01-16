@@ -2,44 +2,44 @@
 
 {% block content %}
   <main>
-    <h1>{{ build_info.app_title }}</h1>
-    <pre>{{ build_info.bundle_id }}</pre>
-    <hr>
-    <pre>{{ build_info.platform.display_name }} ~ {{ build_info.bundle_version }} ~ {{ build_info.human_file_size }}</pre>
-    
-    {% if build_info.created_at %}
-      <time datetime="{{ build_info.created_at }}">{{ build_info.created_at }}</time>
-    {% endif %}
-    <hr>
-    <div class="card">
+    <div class="container"> <!-- Main container for the content -->
+      <!-- Header announcing the new app version -->
+      <h1>A new version of <span class="highlight">{{ build_info.app_title }}</span> for {{ build_info.platform.display_name}} is available.</h1>
+      <!-- Card section displaying app details -->
+      <div class="card">
+          <p><img src="/static/{{ build_info.platform.platform_name }}.svg" alt="{{ build_info.app_title }}" class="logo"> <!-- App logo --></p>
+          <h2>{{ build_info.app_title }}</h2> <!-- App name -->
+          <p class="bundle">{{ build_info.bundle_id }}</p>
+          <p class="version">{{ build_info.bundle_version }}</p> <!-- Version and build number -->
+          <p class="filesize">{{ build_info.human_file_size }}</p>
+
+          <div class="qr">
+            {{qr_code_svg|safe}}
+          </div>
+          <a href="{{install_url}}" class="install-btn">Install</a> <!-- Call-to-action button for installation -->
+          {% if changelog %}
+            <a href="#" class="whats-new-link">Show me what's new in this build, please.</a> <!-- Link to the changelog section -->
+          {% endif %}
       
-      <div class="card-body">
-        <div class="qr">
-          {{qr_code_svg|safe}}
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="install">
-          <a href="{{install_url}}">Install</a>
-        </div>
       </div>
       
     </div>
-    {% if build_info.changelog_content %}
-      <h2>Changelog</h2>
-      <pre>{{ build_info.changelog_content }}</pre>
-    {% endif %}
-    
-
-    
   </main>
-  <footer>
-    {% if logo_url %}
-      <div class="logo">
-          <p>BetaBox</p>
-          <img src="{{logo_url}}" alt="logo" />
+  
+    {% if changelog %}
+    
+      <div id="changelog" class="whats-new">
+          <h3>What's new</h3>
+          <p>New build of app available for internal testing</p> <!-- Short description of the update -->
+          {{ changelog|safe }}
       </div>
+    
     {% endif %}
-   
-  </footer>
+  
+    <script>
+      document.querySelector('.whats-new-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('#changelog').scrollIntoView({ behavior: 'smooth' });
+      });
+    </script>
 {% endblock %}

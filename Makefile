@@ -3,7 +3,8 @@ help: ## Show this help
 	awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-21s\033[0m %s\n", $$1, $$2}'
 
 setup-venv: ## Setup a local venv
-	python3 -m venv venv
+	python3.12 -m venv .venv && . .venv/bin/activate
+	
 
 install-deps: ## Install python dependencies for development
 	pip install -r requirements.txt -r requirements-dev.txt
@@ -16,6 +17,9 @@ start-ssl: ## Start a production like server
 
 dev: ## Start the local developent server
 	uvicorn --host=0.0.0.0 --port=8000 app_distribution_server.app:app --reload
+
+dev-debug: ## Start the local development server with debug logging
+	PYTHONPATH=. LOG_LEVEL=DEBUG uvicorn --host=0.0.0.0 --port=8000 app_distribution_server.app:app --reload --log-level debug
 
 lint: ## Lint the code according to the standards
 	ruff check .
