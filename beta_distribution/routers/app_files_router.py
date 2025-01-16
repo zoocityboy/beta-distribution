@@ -5,13 +5,13 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from uuid import uuid4
 
-from app_distribution_server.build_info import (
+from beta_distribution.build_info import (
     Platform,
 )
-from app_distribution_server.config import (
+from beta_distribution.config import (
     get_absolute_url,
 )
-from app_distribution_server.storage import (
+from beta_distribution.storage import (
     get_upload_asserted_platform,
     load_app_file,
     load_build_info,

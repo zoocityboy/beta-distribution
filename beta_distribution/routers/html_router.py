@@ -3,19 +3,19 @@ from fastapi.responses import HTMLResponse,PlainTextResponse
 from fastapi.templating import Jinja2Templates
 from uuid import uuid4
 from markdown import markdown
-from app_distribution_server.build_info import (
+from beta_distribution.build_info import (
     Platform,
 )
-from app_distribution_server.config import (
+from beta_distribution.config import (
     APP_TITLE,
     LOGO_URL,
     get_absolute_url,
 )
-from app_distribution_server.errors import (
+from beta_distribution.errors import (
     UserError,
 )
-from app_distribution_server.qrcode import get_qr_code_svg
-from app_distribution_server.storage import (
+from beta_distribution.qrcode import get_qr_code_svg
+from beta_distribution.storage import (
     get_upload_asserted_platform,
     get_latest_upload_id_by_bundle_id,
     load_build_info,

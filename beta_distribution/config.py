@@ -1,6 +1,6 @@
 import os
 
-from app_distribution_server.logger import logger
+from beta_distribution.logger import logger
 
 STORAGE_URL = os.getenv("STORAGE_URL", "osfs://./uploads")
 

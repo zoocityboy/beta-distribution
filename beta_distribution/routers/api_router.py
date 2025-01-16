@@ -4,22 +4,22 @@ from fastapi import APIRouter, Depends, File, Path, UploadFile
 from fastapi.responses import PlainTextResponse
 from fastapi.security import APIKeyHeader
 
-from app_distribution_server.build_info import (
+from beta_distribution.build_info import (
     BuildInfo,
     Platform,
     get_build_info,
 )
-from app_distribution_server.config import (
+from beta_distribution.config import (
     UPLOADS_SECRET_AUTH_TOKEN,
     get_absolute_url,
 )
-from app_distribution_server.errors import (
+from beta_distribution.errors import (
     InvalidFileTypeError,
     NotFoundError,
     UnauthorizedError,
 )
-from app_distribution_server.logger import logger
-from app_distribution_server.storage import (
+from beta_distribution.logger import logger
+from beta_distribution.storage import (
     delete_upload,
     get_latest_upload_id_by_bundle_id,
     get_upload_asserted_platform,

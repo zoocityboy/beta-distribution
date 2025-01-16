@@ -2,10 +2,10 @@ import json
 
 from fs import errors, open_fs, path
 
-from app_distribution_server.build_info import BuildInfo, LegacyAppInfo, Platform
-from app_distribution_server.config import STORAGE_URL
-from app_distribution_server.errors import NotFoundError
-from app_distribution_server.logger import logger
+from beta_distribution.build_info import BuildInfo, LegacyAppInfo, Platform
+from beta_distribution.config import STORAGE_URL
+from beta_distribution.errors import NotFoundError
+from beta_distribution.logger import logger
 
 PLIST_FILE_NAME = "info.plist"
 BUILD_INFO_JSON_FILE_NAME = "build_info.json"

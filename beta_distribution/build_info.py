@@ -13,8 +13,8 @@ from uuid import uuid4
 from androguard.core.apk import APK, get_apkid
 from pydantic import BaseModel, field_validator
 
-from app_distribution_server.errors import InvalidFileTypeError
-from app_distribution_server.logger import logger
+from beta_distribution.errors import InvalidFileTypeError
+from beta_distribution.logger import logger
 
 
 class Platform(str, Enum):

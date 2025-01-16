@@ -10,16 +10,16 @@ install-deps: ## Install python dependencies for development
 	pip install -r requirements.txt -r requirements-dev.txt
 
 start: ## Start a production like server
-	uvicorn --host=0.0.0.0 --port=8000 app_distribution_server.app:app
+	uvicorn --host=0.0.0.0 --port=8000 beta_distribution.app:app
 
 start-ssl: ## Start a production like server
-	uvicorn --host=0.0.0.0 --port=8000 --ssl-keyfile ./cert/key.pem --ssl-certfile ./cert/cert.pem app_distribution_server.app:app
+	uvicorn --host=0.0.0.0 --port=8000 --ssl-keyfile ./cert/key.pem --ssl-certfile ./cert/cert.pem beta_distribution.app:app
 
 dev: ## Start the local developent server
-	uvicorn --host=0.0.0.0 --port=8000 app_distribution_server.app:app --reload
+	uvicorn --host=0.0.0.0 --port=8000 beta_distribution.app:app --reload
 
 dev-debug: ## Start the local development server with debug logging
-	PYTHONPATH=. LOG_LEVEL=DEBUG uvicorn --host=0.0.0.0 --port=8000 app_distribution_server.app:app --reload --log-level debug
+	PYTHONPATH=. LOG_LEVEL=DEBUG uvicorn --host=0.0.0.0 --port=8000 beta_distribution.app:app --reload --log-level debug
 
 lint: ## Lint the code according to the standards
 	ruff check .

@@ -4,17 +4,17 @@ from fastapi.responses import PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app_distribution_server.config import (
+from beta_distribution.config import (
     APP_TITLE,
     APP_VERSION,
 )
-from app_distribution_server.errors import (
+from beta_distribution.errors import (
     InternalServerError,
     UserError,
     status_codes_to_default_exception_types,
 )
-from app_distribution_server.logger import logger
-from app_distribution_server.routers import api_router, app_files_router, health_router, html_router
+from beta_distribution.logger import logger
+from beta_distribution.routers import api_router, app_files_router, health_router, html_router
 
 logger.info("Starting app...")
 logger.info(f"App title: {APP_TITLE}")
