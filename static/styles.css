@@ -57,7 +57,10 @@
     --button-hover-bg: #0056b3;
     --link-color: #007bff;
     --footer-color: #6c757d;
+    --qr-filter: invert(100%);
     --svg-filter: invert(0%);
+    
+    
 }
 
 :root[data-theme='dark'] {
@@ -67,14 +70,15 @@
     --highlight-color: #bb86fc;
     --button-bg: #bb86fc;
     --button-color: #121212;
-    --button-hover-bg: #3700b3;
+    --button-hover-bg: #c9a3f8;
     --link-color: #bb86fc;
     --footer-color: #bbbbbb;
+    --qr-filter: invert(0%);
     --svg-filter: invert(100%);
 }
 
 body {
-    font-family: Helvetica, 'Segoe UI',Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -173,15 +177,14 @@ h1 {
 
 
 .qr {
-    filter: var(--svg-filter);
-    margin: 1rem 1rem;
+    margin: 1rem;
     border-radius: 0.5rem;
     overflow: hidden;
+    background: var(--foreground);
+    padding: 1rem;
 }
-
 .qr svg {
-    width: 180px;
-    height: 180px;
+    filter: var(--qr-filter);
 }
 
 .logo {
@@ -200,14 +203,17 @@ h1 {
 .version {
     font-weight: bold;
     margin: 0.5rem 0;
+    font-size: 1.2rem;
 }
 .filesize{
     font-weight: normal;
     font-size: 1rem;
+    margin: 0 0;
     color: var(--footer-color);
+    
 }
 .bundle{
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin: 0 0;
     color: var(--footer-color);
 }
@@ -270,7 +276,10 @@ h1 {
     text-align: left;
     font-size: .8rem;
 }
-
+time{
+    font-size: 0.8rem;
+    color: var(--footer-color);
+}
 
 footer {
     font-size: 0.8rem;
@@ -294,6 +303,10 @@ footer div.row{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+footer .img{
+    height: 1rem;
+    width: auto;
 }
 body {
     background-color: var(--background);

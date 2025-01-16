@@ -68,6 +68,10 @@ def load_build_info(upload_id: str) -> BuildInfo:
         filepath = path.join(upload_id, BUILD_INFO_JSON_FILE_NAME)
         with filesystem.open(filepath, "r") as app_info_file:
             build_info_json = json.load(app_info_file)
+            if "web" not in build_info_json:
+                build_info_json["web"] = None
+            if "changelog_content" not in build_info_json:
+                build_info_json["changelog_content"] = None
             return BuildInfo.model_validate(build_info_json)
 
     except errors.ResourceNotFound:
@@ -94,6 +98,8 @@ def migrate_legacy_app_info(upload_id: str) -> BuildInfo:
         file_size=file_size,
         created_at=None,
         platform=Platform.ios,
+        changelog_content=legacy_app_info.changelog_content,
+        web=legacy_app_info.web,
     )
 
     save_build_info(build_info)

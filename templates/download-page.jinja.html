@@ -9,8 +9,8 @@
       <div class="card">
           <p><img src="/static/{{ build_info.platform.platform_name }}.svg" alt="{{ build_info.app_title }}" class="logo"> <!-- App logo --></p>
           <h2>{{ build_info.app_title }}</h2> <!-- App name -->
+          <p class="version">{{ build_info.bundle_version }}</p> 
           <p class="bundle">{{ build_info.bundle_id }}</p>
-          <p class="version">{{ build_info.bundle_version }}</p> <!-- Version and build number -->
           <p class="filesize">{{ build_info.human_file_size }}</p>
 
           <div class="qr">
@@ -22,7 +22,9 @@
           {% endif %}
       
       </div>
-      
+      {% if build_info.created_at %}
+        <time datetime="{{ build_info.created_at }}">{{ build_info.created_at }}</time>
+      {% endif %}
     </div>
   </main>
   

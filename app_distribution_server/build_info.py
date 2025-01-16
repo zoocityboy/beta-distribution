@@ -55,7 +55,6 @@ class LegacyAppInfo(BaseModel):
     app_title: str
     bundle_id: str
     bundle_version: str
-    changelog: str | None = None
 
     @field_validator("bundle_id")
     def validate_bundle_id(cls, v):
