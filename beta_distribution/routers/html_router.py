@@ -90,9 +90,8 @@ async def render_get_item_installation_page(
         install_url = get_absolute_url(f"/get/{upload_id}/app.apk")
 
     build_info = load_build_info(upload_id)
-    
     html_content = markdown(build_info.changelog_content, output_format="html")
-    print(f"Changelog content: {html_content}")
+    
 
     return templates.TemplateResponse(
         request=request,
