@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
     <link rel="stylesheet" href="/static/device-mockups.css">
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll("time").forEach(function(datetimeElement) {
@@ -71,7 +72,7 @@
       // Toggle theme on click
       themeToggle.addEventListener('click', () => {
         isDark = !isDark;
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', isDark ? 'light': 'dark' );
       });
      
       // Set initial theme based on system preference
