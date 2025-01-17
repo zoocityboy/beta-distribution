@@ -2,15 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
     <title>{{ page_title }}</title>
+    <link rel="icon" type="image/png" href="/static/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/static/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/static/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Beta Distribution" />
+    <link rel="manifest" href="/static/favicon/site.webmanifest" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css">
-    <link rel="stylesheet" href="/static/device-mockups.css">
-    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <link rel="stylesheet" href="/static/styles/device-mockups.css">
+    <link rel="stylesheet" href="/static/styles/styles.css">
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll("time").forEach(function(datetimeElement) {
@@ -24,7 +30,15 @@
   </head>
 
   <body>
-    <section class="header">
+    <nav class="navbar">
+      <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        {% if logo_url %} 
+        <img src="{{logo_url}}" alt="logo" />
+        {% else %}
+        Beta Distribution
+        {% endif %}
+      </a>
       <div class="theme-switcher">
         <button id="theme-toggle" aria-label="Toggle theme">
           <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -43,7 +57,8 @@
           </svg>
         </button>
       </div>
-    </section>
+      </div>
+  </nav>
     <section class="content">
       {% block content %}
       {% endblock %}
@@ -53,12 +68,13 @@
     <footer>
       <div class="container">
         <div class="row">
-          <p>Beta Distribution</p>
+          
           <p>{% if logo_url %} 
-            <img class="img" src="{{logo_url}}" alt="logo" />
+            <img class="img svg-filter" src="{{logo_url}}" alt="logo" />
             {% else %}
-            &copy; 2025 Embedit
+            Beta Distribution
             {% endif %}</p>
+            <p>&copy; 2025</p>
         </div>
       </div>
     </footer>

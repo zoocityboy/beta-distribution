@@ -18,7 +18,7 @@ APP_VERSION = os.getenv("APP_VERSION") or "0.0.1-development"
 APP_TITLE = os.getenv("APP_TITLE") or "beta distribution server"
 
 
-_raw_logo_url = os.getenv("LOGO_URL", "/static/logo.svg")
+_raw_logo_url = os.getenv("LOGO_URL", "/static/svg/logo.svg")
 LOGO_URL: str | None = None if _raw_logo_url.lower() in ["", "0", "false"] else _raw_logo_url
 
 

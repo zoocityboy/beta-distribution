@@ -96,7 +96,7 @@ async def render_get_item_installation_page(
 
     return templates.TemplateResponse(
         request=request,
-        name="download-page.jinja.html",
+        name="detail-page.jinja.html",
         context={
             "page_title": f"{build_info.app_title} @{build_info.bundle_version} - {APP_TITLE}",
             "build_info": build_info,

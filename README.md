@@ -84,7 +84,7 @@ uploaded prior to v2.
   `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`).
 
 - `LOGO_URL`: The logo URL - absolute URL or a relative path to a logo `src`. Defaults to
-  `/static/logo.svg` (Significa's logo). Disable the logo by setting it to `false`
+  `/static/svg/logo.svg` (Significa's logo). Disable the logo by setting it to `false`
   (`LOGO_URL=false`).
 
 - `APP_TITLE`: Defaults to `iOS/Android app distribution server`, use it to customise your page
