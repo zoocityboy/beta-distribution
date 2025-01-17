@@ -8,7 +8,7 @@ UPLOADS_SECRET_AUTH_TOKEN = os.getenv("UPLOADS_SECRET_AUTH_TOKEN")
 
 if not UPLOADS_SECRET_AUTH_TOKEN:
     UPLOADS_SECRET_AUTH_TOKEN = "secret"  # noqa: S105
-    logger.warn(
+    logger.warning(
         "SECURITY WARNING: Using default auth token!"
         " For security reasons override it with the 'UPLOADS_SECRET_AUTH_TOKEN' env var.",
     )

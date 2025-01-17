@@ -155,9 +155,8 @@ def set_latest_build(build_info: BuildInfo):
 
 def get_latest_upload_id_by_bundle_id(bundle_id: str) -> str | None:
     filepath = get_latest_upload_by_bundle_id_filepath(bundle_id)
-
     logger.info(f"Retrieving latest upload id from bundle {bundle_id!r} ({filepath!r})")
-
+    
     if not filesystem.exists(filepath):
         return None
 

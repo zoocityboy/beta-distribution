@@ -1,12 +1,83 @@
 {% extends "base.jinja.html" %}
 
 {% block content %}
-    <main>
+
+<main class="landing-page">
+    <!-- Hero Section -->
+    <section class="hero">
+        
+        <h1>Beta <span class="highlight">Distribution</span></h1>
+        <p class="tagline">Open source solution for delivery app to testers.</p>
+        
+    </section>
+
+    <section class="devices-showcase" style="position: relative;">
+        <div class="marvel-device iphone8plus black">
+            <div class="top-bar"></div>
+            <div class="sleep"></div>
+            <div class="volume"></div>
+            <div class="camera"></div>
+            <div class="sensor"></div>
+            <div class="speaker"></div>
+            <div class="screen"></div>
+            <div class="home"></div>
+            <div class="bottom-bar"></div>
+        </div>
+        <div class="marvel-device nexus5">
+            <div class="top-bar"></div>
+            <div class="sleep"></div>
+            <div class="volume"></div>
+            <div class="camera"></div>
+            <div class="screen"></div>
+        </div>
+
+        <div class="marvel-device iphone-x">
+            <div class="notch">
+                <div class="camera"></div>
+                <div class="speaker"></div>
+            </div>
+            <div class="top-bar"></div>
+            <div class="sleep"></div>
+            <div class="bottom-bar"></div>
+            <div class="volume"></div>
+            <div class="overflow">
+                <div class="shadow shadow--tr"></div>
+                <div class="shadow shadow--tl"></div>
+                <div class="shadow shadow--br"></div>
+                <div class="shadow shadow--bl"></div>
+            </div>
+            <div class="inner-shadow"></div>
+            <div class="screen"></div>
+        </div>
+
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose Beta Distribution?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Open source</h3>
+                <p>You can make your oven extends</p>
+            </div>
+            <div class="feature-card">
+                <h3>Self-hosted</h3>
+                <p>No third party dependency! No vendor lock!</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Simple!</h3>
+                <p>This service does only one thing</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
         {% if logo_url %}
         <div class="logo">
-            <img src="{{logo_url}}" alt="logo" />
+            <img src="{{logo_url}}" alt="Beta Distribution Logo" />
         </div>
         {% endif %}
-        <h1>Homepage</h1>
-    </main>
+    </section>
+</main>
 {% endblock %}

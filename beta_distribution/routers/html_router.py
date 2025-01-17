@@ -12,6 +12,7 @@ from beta_distribution.config import (
     get_absolute_url,
 )
 from beta_distribution.errors import (
+    NotFoundError,
     UserError,
 )
 from beta_distribution.qrcode import get_qr_code_svg
@@ -25,6 +26,20 @@ router = APIRouter(tags=["HTML page handling"])
 
 templates = Jinja2Templates(directory="templates")
 
+@router.get(
+    "/", 
+    response_class=HTMLResponse, 
+    summary="Render the home page"
+)
+async def render_home_page(request: Request) -> HTMLResponse:
+    return templates.TemplateResponse(
+        request=request,
+        name="home.jinja.html",
+        context={
+            "page_title": APP_TITLE,
+            "logo_url": LOGO_URL,
+        },
+    )
 
 @router.get(
     "/{bundle_id}/latest",
